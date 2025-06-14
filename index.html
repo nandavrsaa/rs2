@@ -232,7 +232,7 @@
             padding: 2rem 0;
         }
 
-        .hero-image {
+        .logo-image {
             width: 100%;
             max-width: 400px;
             height: 350px;
@@ -246,7 +246,7 @@
             overflow: hidden;
         }
 
-        .hero-image::before {
+        .logo-image::before {
             content: '';
             position: absolute;
             top: 0;
@@ -258,11 +258,11 @@
             transition: opacity 0.4s ease;
         }
 
-        .hero-image:hover::before {
+        .logo-image:hover::before {
             opacity: 1;
         }
 
-        .hero-image:hover {
+        .logo-image:hover {
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
@@ -435,7 +435,7 @@
                 font-size: 1rem;
             }
 
-            .hero-image {
+            .logo-image {
                 height: 280px;
                 max-width: 350px;
             }
@@ -455,6 +455,19 @@
                 padding: 12px 15px;
                 font-size: 0.9rem;
             }
+
+            /* Force logo to be on top on mobile */
+            .main-container .row {
+                flex-direction: column;
+            }
+
+            .col-lg-6.order-2.order-lg-1 {
+                order: 1 !important;
+            }
+
+            .col-lg-6.order-1.order-lg-2 {
+                order: 2 !important;
+            }
         }
 
         @media (max-width: 576px) {
@@ -462,7 +475,7 @@
                 padding: 1rem 0;
             }
             
-            .hero-image {
+            .logo-image {
                 height: 250px;
             }
 
@@ -549,9 +562,9 @@
     <div class="main-container">
         <div class="container">
             <div class="row align-items-center">
-                <!-- Hero Image -->
+                <!-- Logo Image -->
                 <div class="col-lg-6 order-2 order-lg-1">
-                    <div class="hero-image" title="RS PKU Muhammadiyah Surabaya"></div>
+                    <div class="logo-image" title="RS PKU Muhammadiyah Surabaya"></div>
                 </div>
                 
                 <!-- Registration Card -->
