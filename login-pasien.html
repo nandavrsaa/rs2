@@ -226,10 +226,10 @@
             }
         }
 
-        /* Back Button */
+        /* Back Button - PERBAIKAN UTAMA */
         .back-button {
-            position: absolute;
-            top: 20px;
+            position: fixed; /* Ubah dari absolute ke fixed */
+            top: 100px; /* Posisi lebih ke bawah dari header */
             left: 20px;
             width: 50px;
             height: 50px;
@@ -244,12 +244,26 @@
             transition: all 0.3s ease;
             z-index: 1000;
             box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+            cursor: pointer; /* Pastikan cursor pointer */
+            text-decoration: none; /* Hapus underline jika berupa link */
         }
 
         .back-button:hover {
             background: var(--secondary-color);
             transform: translateY(-2px) scale(1.05);
             box-shadow: var(--hover-shadow);
+            color: white; /* Pastikan warna tetap putih saat hover */
+        }
+
+        .back-button:active {
+            transform: translateY(1px) scale(0.95);
+            transition: all 0.1s ease;
+        }
+
+        /* Tambahan untuk memastikan tombol bisa diklik */
+        .back-button:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
         }
 
         /* Main Content */
@@ -387,6 +401,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .captcha-code::before {
@@ -526,7 +541,7 @@
             .back-button {
                 width: 45px;
                 height: 45px;
-                top: 15px;
+                top: 85px; /* Sesuaikan dengan tinggi header mobile */
                 left: 15px;
                 font-size: 1.3rem;
             }
@@ -624,6 +639,11 @@
     </style>
 </head>
 <body>
+    <!-- Back Button - TAMBAHAN UTAMA -->
+    <button class="back-button" onclick="goBack()" title="Kembali ke halaman sebelumnya">
+        ←
+    </button>
+
     <!-- Header -->
     <div class="header">
         <div class="container">
@@ -675,11 +695,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Back Button -->
-    <button class="back-button" onclick="goBack()" aria-label="Kembali">
-        <span>←</span>
-    </button>
 
     <!-- Main Content -->
     <div class="main-container">
@@ -742,7 +757,7 @@
                             <div class="form-group">
                                 <label class="form-label">Captcha</label>
                                 <div class="captcha-container">
-                                    <div class="captcha-code" id="captchaCode">12TG54Y</div>
+                                    <div class="captcha-code" id="captchaCode" title="Klik untuk refresh captcha">12TG54Y</div>
                                     <input 
                                         type="text" 
                                         id="captcha"
@@ -861,8 +876,23 @@
             }, 2000);
         }
 
+        // PERBAIKAN FUNGSI GOBACK
         function goBack() {
-            window.location.href = 'index.html';
+            // Opsi 1: Kembali ke halaman sebelumnya dalam history browser
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                // Opsi 2: Jika tidak ada history, ke halaman utama
+                window.location.href = 'index.html';
+            }
+            
+            // Opsi 3: Langsung ke halaman tertentu
+            // window.location.href = 'index.html';
+            
+            // Opsi 4: Scroll ke bagian tertentu di halaman yang sama
+            // document.querySelector('.main-container').scrollIntoView({ 
+            //     behavior: 'smooth' 
+            // });
         }
 
         document.addEventListener('DOMContentLoaded', function() {
