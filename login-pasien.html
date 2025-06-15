@@ -3,34 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Pasien Lama - RS PKU Muhammadiyah Surabaya</title>
-    <!-- Bootstrap CSS -->
+    <title>RS PKU Muhammadiyah Surabaya</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #4ECDC4;
-            --secondary-color: #45B7B8;
-            --dark-teal: #2C5F5D;
-            --light-gray: #F5F5F5;
-            --hover-shadow: 0 8px 25px rgba(78, 205, 196, 0.3);
+            --primary: #4ECDC4;
+            --secondary: #45B7B8;
+            --dark: #2C5F5D;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: var(--light-gray);
+            background: linear-gradient(135deg, #E8F8F7 0%, #F0F9FF 100%);
             min-height: 100vh;
             margin: 0;
-            padding: 0;
         }
 
-        /* Header */
         .header {
             background: white;
             padding: 1rem 0;
@@ -42,11 +34,11 @@
         .logo {
             width: 60px;
             height: 60px;
-            background: url('assets/images/logo-rs-pku.png') center/cover no-repeat;
+            background: url('assets/images/logo-rs-pku.png') center/cover;
             background-color: #f8f9fa;
             border-radius: 50%;
             margin-right: 15px;
-            border: 3px solid var(--primary-color);
+            border: 3px solid var(--primary);
         }
 
         .hospital-name {
@@ -54,18 +46,14 @@
             font-weight: 700;
             color: #2C3E50;
             margin: 0;
-            line-height: 1.2;
         }
 
         .hospital-subtitle {
             font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--secondary-color);
+            color: var(--secondary);
             margin: 0;
-            line-height: 1.2;
         }
 
-        /* Hamburger Menu Styles */
         .hamburger {
             border: none;
             background: none;
@@ -76,40 +64,25 @@
             height: 30px;
             cursor: pointer;
             padding: 0;
-            transition: all 0.3s ease;
         }
 
         .hamburger span {
             display: block;
             height: 3px;
             width: 100%;
-            background: var(--dark-teal);
+            background: var(--dark);
             border-radius: 2px;
             transition: all 0.3s ease;
         }
 
-        .hamburger:hover span {
-            background: var(--primary-color);
-        }
+        .hamburger:hover span { background: var(--primary); }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
+        .navbar-nav { display: none; }
 
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        /* Desktop Navigation - Hidden on Mobile */
-        .navbar-nav {
-            display: none;
-        }
-
-        /* Mobile Menu */
         .mobile-menu {
             position: absolute;
             top: 100%;
@@ -122,17 +95,12 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
-            z-index: 999;
         }
 
         .mobile-menu.active {
             transform: translateY(0);
             opacity: 1;
             visibility: visible;
-        }
-
-        .mobile-menu-content {
-            padding: 1rem 0;
         }
 
         .mobile-menu-item {
@@ -147,28 +115,12 @@
             border-left: 4px solid transparent;
         }
 
-        .mobile-menu-item.active {
-            background: rgba(78, 205, 196, 0.1);
-            border-left-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
         .mobile-menu-item:hover {
             background: rgba(78, 205, 196, 0.1);
-            border-left-color: var(--primary-color);
-            color: var(--primary-color);
+            border-left-color: var(--primary);
+            color: var(--primary);
             text-decoration: none;
             transform: translateX(10px);
-        }
-
-        .menu-icon {
-            font-size: 1.2rem;
-            width: 24px;
-            text-align: center;
-        }
-
-        .menu-text {
-            font-size: 1rem;
         }
 
         @media (min-width: 1400px) {
@@ -177,495 +129,168 @@
                 gap: 2rem;
                 align-items: center;
             }
-
-            .hamburger {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: none;
-            }
+            .hamburger { display: none; }
+            .mobile-menu { display: none; }
 
             .nav-link {
                 color: #2C3E50;
                 text-decoration: none;
                 font-weight: 500;
-                font-size: 0.95rem;
                 padding: 0.5rem 1rem;
                 border-radius: 25px;
                 transition: all 0.3s ease;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .nav-link.active {
-                color: var(--primary-color);
-                background: rgba(78, 205, 196, 0.1);
-            }
-
-            .nav-link::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(78, 205, 196, 0.1), transparent);
-                transition: left 0.6s ease;
-            }
-
-            .nav-link:hover::before {
-                left: 100%;
             }
 
             .nav-link:hover {
-                color: var(--primary-color);
+                color: var(--primary);
                 background: rgba(78, 205, 196, 0.1);
                 text-decoration: none;
                 transform: translateY(-2px);
             }
         }
 
-        /* Back Button - PERBAIKAN UTAMA */
-        .back-button {
-            position: fixed; /* Ubah dari absolute ke fixed */
-            top: 100px; /* Posisi lebih ke bawah dari header */
-            left: 20px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary-color);
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
-            cursor: pointer; /* Pastikan cursor pointer */
-            text-decoration: none; /* Hapus underline jika berupa link */
-        }
-
-        .back-button:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: var(--hover-shadow);
-            color: white; /* Pastikan warna tetap putih saat hover */
-        }
-
-        .back-button:active {
-            transform: translateY(1px) scale(0.95);
-            transition: all 0.1s ease;
-        }
-
-        /* Tambahan untuk memastikan tombol bisa diklik */
-        .back-button:focus {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 2px;
-        }
-
-        /* Main Content */
         .main-container {
             min-height: calc(100vh - 100px);
             display: flex;
             align-items: center;
             padding: 2rem 0;
-            position: relative;
         }
 
-        .page-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .page-title h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #2C3E50;
-            margin-bottom: 0.5rem;
-        }
-
-        .page-subtitle {
-            font-size: 1rem;
-            color: var(--primary-color);
-            font-weight: 500;
-        }
-
-        .illustration-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 400px;
-            margin-bottom: 2rem;
-        }
-
-        .doctor-illustration {
+        .logo-image {
             width: 100%;
             max-width: 400px;
             height: 350px;
-            background: url('assets/images/patient.png') center/contain no-repeat;
-            background-color: transparent;
+            background: url('assets/images/doctor-patient.png') center/cover;
+            background-color: #f8f9fa;
+            border-radius: 20px;
+            margin: 0 auto 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: all 0.4s ease;
         }
 
-        .doctor-illustration:hover {
-            transform: scale(1.02);
+        .logo-image:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
-        /* Login Form */
-        .login-card {
+        .registration-card {
             background: white;
             border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            max-width: 450px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 400px;
             margin: 0 auto;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
 
-        .login-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            transition: left 0.6s ease;
-        }
-
-        .login-card:hover::before {
-            left: 0;
-        }
-
-        .login-card:hover {
+        .registration-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-label {
-            font-weight: 600;
-            color: #2C3E50;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        .form-control-custom {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #E9ECEF;
-            border-radius: 15px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: #F8F9FA;
-        }
-
-        .form-control-custom:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            background: white;
-            box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
-            transform: translateY(-1px);
-        }
-
-        .form-control-custom::placeholder {
-            color: #ADB5BD;
-            font-weight: 400;
-        }
-
-        /* Captcha */
-        .captcha-container {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .captcha-code {
-            background: var(--dark-teal);
+        .registration-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-            min-width: 120px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
+            padding: 1.5rem;
+            border-radius: 15px 15px 0 0;
+            margin: -2rem -2rem 2rem -2rem;
+            font-weight: 700;
+            font-size: 1.2rem;
         }
 
-        .captcha-code::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
+        .registration-info {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2C3E50;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
 
-        .captcha-container:hover .captcha-code::before {
-            animation: shimmer 1.5s ease-in-out;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
-        }
-
-        .captcha-input {
-            flex: 1;
-        }
-
-        /* Login Button */
-        .btn-login {
+        .btn-custom {
             width: 100%;
             padding: 15px 20px;
-            font-size: 1.1rem;
-            font-weight: 700;
+            font-size: 1rem;
+            font-weight: 600;
             border: none;
             border-radius: 50px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            margin-top: 1rem;
+            letter-spacing: 0.5px;
         }
 
-        .btn-login::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s ease;
+        .btn-info {
+            background: linear-gradient(135deg, var(--dark), #1e4746);
+            color: white;
+            box-shadow: 0 4px 15px rgba(44, 95, 93, 0.3);
         }
 
-        .btn-login:hover::before {
-            left: 100%;
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
         }
 
-        .btn-login:hover {
+        .btn-outline {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.2);
+        }
+
+        .btn-custom:hover {
             transform: translateY(-3px) scale(1.02);
-            box-shadow: var(--hover-shadow);
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
         }
 
-        .btn-login:active {
-            transform: translateY(-1px) scale(0.98);
-            transition: all 0.1s ease;
+        .btn-outline:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: var(--secondary);
         }
 
-        /* Loading state */
-        .btn-login.loading {
-            pointer-events: none;
-            opacity: 0.7;
-        }
-
-        .btn-login.loading::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 20px;
-            height: 20px;
-            margin: -10px 0 0 -10px;
-            border: 2px solid transparent;
-            border-top: 2px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Error states */
-        .form-control-custom.error {
-            border-color: #dc3545;
-            background: #fff5f5;
-        }
-
-        .error-message {
-            color: #dc3545;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-
-        .error-message.show {
-            display: block;
-            animation: slideDown 0.3s ease;
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .hospital-name {
-                font-size: 1rem;
-            }
+            .hospital-name { font-size: 1rem; }
+            .hospital-subtitle { font-size: 0.8rem; }
+            .logo { width: 50px; height: 50px; }
+            .logo-image { height: 280px; max-width: 350px; }
+            .registration-card { padding: 1.5rem; margin: 1rem; }
+            .registration-header { margin: -1.5rem -1.5rem 1.5rem -1.5rem; padding: 1.2rem; }
+            .btn-custom { padding: 12px 15px; font-size: 0.9rem; }
             
-            .hospital-subtitle {
-                font-size: 0.8rem;
-            }
-
-            .logo {
-                width: 50px;
-                height: 50px;
-            }
-
-            .back-button {
-                width: 45px;
-                height: 45px;
-                top: 85px; /* Sesuaikan dengan tinggi header mobile */
-                left: 15px;
-                font-size: 1.3rem;
-            }
-
-            .main-container {
-                padding: 1rem 0;
-            }
-
-            .page-title h1 {
-                font-size: 1.5rem;
-            }
-
-            .page-subtitle {
-                font-size: 0.9rem;
-            }
-
-            .illustration-container {
-                height: 250px;
-                margin-bottom: 1rem;
-            }
-
-            .doctor-illustration {
-                height: 220px;
-                max-width: 300px;
-            }
-
-            .login-card {
-                padding: 2rem;
-                margin: 0 1rem;
-            }
-
-            .captcha-container {
-                flex-direction: column;
-                gap: 10px;
-                margin-bottom: 1.5rem;
-            }
-
-            .captcha-code {
-                width: 100%;
-            }
-
-            /* IMPORTANT: Force image to appear on top on mobile */
-            .mobile-image-top {
-                order: -1 !important;
-            }
-            
-            .mobile-form-bottom {
-                order: 1 !important;
-            }
+            .main-container .row { flex-direction: column; }
+            .col-lg-6.order-2.order-lg-1 { order: 1 !important; }
+            .col-lg-6.order-1.order-lg-2 { order: 2 !important; }
         }
 
         @media (max-width: 576px) {
-            .login-card {
-                padding: 1.5rem;
-                margin: 0 0.5rem;
-            }
-
-            .form-control-custom {
-                padding: 12px 15px;
-                font-size: 0.95rem;
-            }
-
-            .btn-login {
-                padding: 12px 15px;
-                font-size: 1rem;
-            }
-
-            .illustration-container {
-                height: 200px;
-                margin-bottom: 0.5rem;
-            }
-
-            .doctor-illustration {
-                height: 180px;
-                max-width: 250px;
-            }
-        }
-
-        /* Focus states for accessibility */
-        .form-control-custom:focus,
-        .btn-login:focus {
-            outline: 3px solid rgba(78, 205, 196, 0.5);
-            outline-offset: 2px;
-        }
-
-        .back-button:focus {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 2px;
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
+            .main-container { padding: 1rem 0; }
+            .logo-image { height: 250px; }
+            .registration-card { margin: 0.5rem; padding: 1.2rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Back Button - TAMBAHAN UTAMA -->
-    <button class="back-button" onclick="goBack()" title="Kembali ke halaman sebelumnya">
-        ←
-    </button>
-
-    <!-- Header -->
     <div class="header">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
-                    <div class="logo" title="Logo RS PKU Muhammadiyah Surabaya"></div>
+                    <div class="logo"></div>
                     <div>
                         <div class="hospital-name">RS PKU</div>
                         <div class="hospital-subtitle">MUHAMMADIYAH SURABAYA</div>
                     </div>
                 </div>
                 
-                <!-- Desktop Navigation - Only visible on large screens -->
                 <nav class="navbar-nav">
                     <a href="informasi-pendaftaran.html" class="nav-link">Informasi</a>
                     <a href="pendaftaran-pasien-baru.html" class="nav-link">Pasien Baru</a>
-                    <a href="login-pasien.html" class="nav-link active">Pasien Lama</a>
+                    <a href="login-pasien.html" class="nav-link">Pasien Lama</a>
                     <a href="pasien-bpjs.html" class="nav-link">BPJS</a>
                 </nav>
                 
-                <!-- Hamburger Menu - Only visible on mobile -->
-                <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">
+                <button class="hamburger" onclick="toggleMenu()">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -673,122 +298,70 @@
             </div>
         </div>
         
-        <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
             <div class="mobile-menu-content">
                 <a href="informasi-pendaftaran.html" class="mobile-menu-item">
-                    <span class="menu-icon">📋</span>
-                    <span class="menu-text">Informasi Pendaftaran</span>
+                    <span>📋</span>
+                    <span>Informasi Pendaftaran</span>
                 </a>
                 <a href="pendaftaran-pasien-baru.html" class="mobile-menu-item">
-                    <span class="menu-icon">👤</span>
-                    <span class="menu-text">Pasien Baru</span>
+                    <span>👤</span>
+                    <span>Pasien Baru</span>
                 </a>
-                <a href="login-pasien.html" class="mobile-menu-item active">
-                    <span class="menu-icon">🔄</span>
-                    <span class="menu-text">Pasien Lama</span>
+                <a href="login-pasien.html" class="mobile-menu-item">
+                    <span>🔄</span>
+                    <span>Pasien Lama</span>
                 </a>
                 <a href="pasien-bpjs.html" class="mobile-menu-item">
-                    <span class="menu-icon">🏥</span>
-                    <span class="menu-text">Pasien BPJS</span>
+                    <span>🏥</span>
+                    <span>Pasien BPJS</span>
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-container">
         <div class="container">
-            <!-- Page Title -->
-            <div class="page-title">
-                <h1>Pendaftaran Pasien Lama</h1>
-                <div class="page-subtitle">Pasien yang sudah pernah mendaftar</div>
-            </div>
-
             <div class="row align-items-center">
-                <!-- Illustration - Will appear on top on mobile -->
-                <div class="col-lg-6 mobile-image-top">
-                    <div class="illustration-container">
-                        <div class="doctor-illustration" title="Ilustrasi Dokter dan Pasien"></div>
-                    </div>
+                <div class="col-lg-6 order-2 order-lg-1">
+                    <div class="logo-image"></div>
                 </div>
                 
-                <!-- Login Form - Will appear below image on mobile -->
-                <div class="col-lg-6 mobile-form-bottom">
-                    <div class="login-card">
-                        <form id="loginForm" onsubmit="handleLogin(event)">
-                            <!-- Nomor Rekam Medis -->
-                            <div class="form-group">
-                                <label class="form-label" for="nomorRekamMedis">Nomor Rekam Medis</label>
-                                <input 
-                                    type="text" 
-                                    id="nomorRekamMedis"
-                                    name="nomorRekamMedis"
-                                    class="form-control-custom" 
-                                    placeholder="Masukkan Nomor Rekam Medis"
-                                    required
-                                    autocomplete="off"
-                                >
-                                <div class="error-message" id="errorRekamMedis">
-                                    Nomor Rekam Medis harus diisi
-                                </div>
-                            </div>
-
-                            <!-- Nomor Induk Kependudukan -->
-                            <div class="form-group">
-                                <label class="form-label" for="nik">Nomor Induk Kependudukan</label>
-                                <input 
-                                    type="text" 
-                                    id="nik"
-                                    name="nik"
-                                    class="form-control-custom" 
-                                    placeholder="Masukkan NIK"
-                                    required
-                                    pattern="[0-9]{16}"
-                                    maxlength="16"
-                                    autocomplete="off"
-                                >
-                                <div class="error-message" id="errorNik">
-                                    NIK harus 16 digit angka
-                                </div>
-                            </div>
-
-                            <!-- Captcha -->
-                            <div class="form-group">
-                                <label class="form-label">Captcha</label>
-                                <div class="captcha-container">
-                                    <div class="captcha-code" id="captchaCode" title="Klik untuk refresh captcha">12TG54Y</div>
-                                    <input 
-                                        type="text" 
-                                        id="captcha"
-                                        name="captcha"
-                                        class="form-control-custom captcha-input" 
-                                        placeholder="Masukkan Captcha"
-                                        required
-                                        autocomplete="off"
-                                    >
-                                </div>
-                                <div class="error-message" id="errorCaptcha">
-                                    Captcha tidak sesuai
-                                </div>
-                            </div>
-
-                            <!-- Login Button -->
-                            <button type="submit" class="btn-login" id="loginBtn">
-                                Log In
-                            </button>
-                        </form>
+                <div class="col-lg-6 order-1 order-lg-2">
+                    <div class="registration-card">
+                        <div class="registration-header">
+                            PENDAFTARAN PASIEN
+                        </div>
+                        
+                        <div class="registration-info">
+                            Pendaftaran online dilakukan<br>
+                            maksimal H-1 sebelum berobat
+                        </div>
+                        
+                        <button class="btn btn-info btn-custom" onclick="navigateTo('info')">
+                            Informasi Pendaftaran
+                        </button>
+                        
+                        <button class="btn btn-primary btn-custom" onclick="navigateTo('pasien-baru')">
+                            Pasien Baru
+                        </button>
+                        
+                        <button class="btn btn-outline btn-custom" onclick="navigateTo('pasien-lama')">
+                            Pasien Lama
+                        </button>
+                        
+                        <button class="btn btn-primary btn-custom" onclick="navigateTo('pasien-bpjs')">
+                            Pasien BPJS
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // Toggle menu function
         function toggleMenu() {
             const hamburger = document.querySelector('.hamburger');
             const mobileMenu = document.getElementById('mobileMenu');
@@ -797,184 +370,28 @@
             mobileMenu.classList.toggle('active');
         }
 
-        // Generate random captcha
-        function generateCaptcha() {
-            const chars = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
-            let captcha = '';
-            for (let i = 0; i < 6; i++) {
-                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+        function navigateTo(page) {
+            const routes = {
+                'info': 'informasi-pendaftaran.html',
+                'pasien-baru': 'pendaftaran-pasien-baru.html',
+                'pasien-lama': 'login-pasien.html',
+                'pasien-bpjs': 'pasien-bpjs.html'
+            };
+            
+            if (routes[page]) {
+                window.location.href = routes[page];
             }
-            return captcha;
         }
 
-        // Initialize captcha
-        function initCaptcha() {
-            const newCaptcha = generateCaptcha();
-            document.getElementById('captchaCode').textContent = newCaptcha;
-        }
-
-        // Validate form
-        function validateForm() {
-            let isValid = true;
+        document.addEventListener('click', function(e) {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
             
-            // Clear previous errors
-            document.querySelectorAll('.form-control-custom').forEach(input => {
-                input.classList.remove('error');
-            });
-            document.querySelectorAll('.error-message').forEach(error => {
-                error.classList.remove('show');
-            });
-
-            // Validate Nomor Rekam Medis
-            const rekamMedis = document.getElementById('nomorRekamMedis').value.trim();
-            if (!rekamMedis) {
-                document.getElementById('nomorRekamMedis').classList.add('error');
-                document.getElementById('errorRekamMedis').classList.add('show');
-                isValid = false;
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
             }
-
-            // Validate NIK
-            const nik = document.getElementById('nik').value.trim();
-            if (!nik || nik.length !== 16 || !/^[0-9]+$/.test(nik)) {
-                document.getElementById('nik').classList.add('error');
-                document.getElementById('errorNik').classList.add('show');
-                isValid = false;
-            }
-
-            // Validate Captcha
-            const captcha = document.getElementById('captcha').value.trim();
-            const captchaCode = document.getElementById('captchaCode').textContent;
-            if (!captcha || captcha !== captchaCode) {
-                document.getElementById('captcha').classList.add('error');
-                document.getElementById('errorCaptcha').classList.add('show');
-                isValid = false;
-            }
-
-            return isValid;
-        }
-
-        // Handle login form submission
-        function handleLogin(event) {
-            event.preventDefault();
-            
-            if (!validateForm()) {
-                return;
-            }
-
-            const loginBtn = document.getElementById('loginBtn');
-            
-            loginBtn.classList.add('loading');
-            loginBtn.style.pointerEvents = 'none';
-            
-            setTimeout(() => {
-                console.log('Login berhasil, navigasi ke halaman pilih poli');
-                
-                window.location.href = 'pilih-poli.html';
-                
-                loginBtn.classList.remove('loading');
-                loginBtn.style.pointerEvents = 'auto';
-            }, 2000);
-        }
-
-        // PERBAIKAN FUNGSI GOBACK
-        function goBack() {
-            // Opsi 1: Kembali ke halaman sebelumnya dalam history browser
-            if (window.history.length > 1) {
-                window.history.back();
-            } else {
-                // Opsi 2: Jika tidak ada history, ke halaman utama
-                window.location.href = 'index.html';
-            }
-            
-            // Opsi 3: Langsung ke halaman tertentu
-            // window.location.href = 'index.html';
-            
-            // Opsi 4: Scroll ke bagian tertentu di halaman yang sama
-            // document.querySelector('.main-container').scrollIntoView({ 
-            //     behavior: 'smooth' 
-            // });
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            initCaptcha();
-            
-            document.getElementById('nik').addEventListener('input', function(e) {
-                this.value = this.value.replace(/[^0-9]/g, '');
-            });
-
-            // Refresh captcha on click
-            document.getElementById('captchaCode').addEventListener('click', function() {
-                initCaptcha();
-                document.getElementById('captcha').value = '';
-                document.getElementById('captcha').classList.remove('error');
-                document.getElementById('errorCaptcha').classList.remove('show');
-            });
-
-            // Clear errors on input
-            document.querySelectorAll('.form-control-custom').forEach(input => {
-                input.addEventListener('input', function() {
-                    if (this.classList.contains('error')) {
-                        this.classList.remove('error');
-                        const errorId = 'error' + this.name.charAt(0).toUpperCase() + this.name.slice(1);
-                        const errorEl = document.getElementById(errorId) || 
-                                       document.getElementById(errorId.replace('nomorRekamMedis', 'RekamMedis'));
-                        if (errorEl) {
-                            errorEl.classList.remove('show');
-                        }
-                    }
-                });
-            });
-
-            // Add ripple effect to login button
-            const loginBtn = document.getElementById('loginBtn');
-            loginBtn.addEventListener('click', function(e) {
-                if (this.classList.contains('loading')) return;
-                
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.position = 'absolute';
-                ripple.style.borderRadius = '50%';
-                ripple.style.background = 'rgba(255, 255, 255, 0.3)';
-                ripple.style.transform = 'scale(0)';
-                ripple.style.animation = 'ripple 0.6s linear';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                ripple.style.width = ripple.style.height = size + 'px';
-                
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
-
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(e) {
-                const hamburger = document.querySelector('.hamburger');
-                const mobileMenu = document.getElementById('mobileMenu');
-                
-                if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-                    hamburger.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                }
-            });
         });
-
-        // Add CSS for ripple animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
